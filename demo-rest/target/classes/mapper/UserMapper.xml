@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yxh.demorest.dao.UserDao">
+    <!--
+        mapper接口和映射文件要保证两个一致
+        1.mapper接口的全类名和映射文件的namespace一致
+        2.mapper接口中的方法的方法名和映射文件中的sql的id保持一致
+    -->
+    <select id="findAll" resultType="User">
+        select id, username, email
+        from user;
+    </select>
+    <insert id="addUser" >
+        insert into user(username,password,email) values (#{username},#{password},#{email});
+    </insert>
+
+    <delete id="delUser" parameterType="int">
+        delete from user where id = #{id};
+    </delete>
+
+    <update id="updateUser">
+        update user SET username = #{username},password = #{password},email= #{email} where id = #{id};
+    </update>
+    <select id="finduserById" resultType="com.yxh.demorest.entity.User">
+        select * from user where id = #{id};
+    </select>
+</mapper>
